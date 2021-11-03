@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField'
 import React, { useRef, useState } from 'react';
+import './Form.scss'
 
 export const Form = ({onMessageSend}) => {
     const [value, setValue] = useState('');
@@ -33,6 +34,7 @@ export const Form = ({onMessageSend}) => {
                 color="primary"
                 onChange={handleChange}
                 inputRef={inputRef}
+                className="Text-field"
                 autoFocus
             />
             <Button

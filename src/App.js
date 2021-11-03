@@ -4,6 +4,9 @@ import './App.scss';
 import { v4 as uuidv4 } from 'uuid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import theme from "./theme";
+import { ThemeProvider } from '@mui/system';
+import { CssBaseline } from '@mui/material';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -37,20 +40,23 @@ function App() {
   }, [messages])
 
   return (
-    <div className="App" ref={parentRef}>
-      <div className="Chats-list">
-        <div className="Chats-list-title">List of chats</div>
-        <List>
-          {chatsList.map((chat) => <ListItem key={chat.id}>{chat.name}</ListItem>)}
-        </List>
-      </div>
-      <div className="Chat">
-        <div className="Messages">
-          {messages.map((message) => <div key={message.id}>{message.author}: {message.text}</div>)}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App" ref={parentRef}>
+        <div className="Chats-list">
+          <div className="Chats-list-title">List of chats</div>
+          <List>
+            {chatsList.map((chat) => <ListItem key={chat.id}>{chat.name}</ListItem>)}
+          </List>
         </div>
-        <Form onMessageSend={onMessageSend}/>
-      </div>            
-    </div>
+        <div className="Chat">
+          <div className="Messages">
+            {messages.map((message) => <div key={message.id}>{message.author}: {message.text}</div>)}
+          </div>
+          <Form onMessageSend={onMessageSend}/>
+        </div>            
+      </div>
+    </ThemeProvider>    
   );
 }
 
