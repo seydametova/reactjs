@@ -1,51 +1,55 @@
-import { useEffect, useState } from 'react';
-// import { Message } from './components/Message/Message';
-// import { Counter } from './components/Counter/Counter'
-import './App.scss';
+import { useEffect, useState, useRef } from 'react';
 import { Form } from './components/Form/Form';
+import './App.scss';
+import { v4 as uuidv4 } from 'uuid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 function App() {
-  // const [text, setText] = useState(' i am a prop ');
-  // const [showCounter, setShowCounter] = useState(true);
   const [messages, setMessages] = useState([]);
+  const parentRef = useRef();
+  const [chatsList, setChatList] = useState([
+    { name: 'Chat 1', id: uuidv4() },
+    { name: 'Chat 2', id: uuidv4() },
+    { name: 'Chat 3', id: uuidv4() },
+    { name: 'Chat 4', id: uuidv4() }
+  ]);
 
   const onMessageSend = (text) => {
     setMessages((prevMessages) => [
       ...prevMessages,
-      {text, author: 'author 1'}
+      {id: uuidv4(),text, author: 'author 1'}
     ])
   };
 
   useEffect(() => {
-    setTimeout( () => {
+    parentRef.current?.scrollIntoView({ behavior: "auto" });
+
+    const timeout = setTimeout( () => {
       if (messages.length > 0 && messages[messages.length - 1].author !== "robot") {
         setMessages((prevMessages) => [
           ...prevMessages,
-          {text: "Robot text", author: 'robot'}
+          {id: uuidv4(),text: "Robot text", author: 'robot'}
         ]);
       }    
-    }, 1500)
+    }, 1500);
+    return () => clearTimeout(timeout);
   }, [messages])
 
-  // const handleClick = () => {
-  //   alert('click');
-  //   setText('123' + Math.random());
-  // }
-
-  // const handleToggleCounter = () => {
-  //   setShowCounter(prevShow => !prevShow);
-  // }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        {messages.map((message) => <div>{message.text}</div>)}
-        <br/>
-        {/* <Message message={text} onMessageClick={handleClick}/>
-        <button onClick={handleToggleCounter}>{showCounter ? 'hide' : 'show'} counter</button>
-        {showCounter && <Counter text={text} />} */}
+    <div className="App" ref={parentRef}>
+      <div className="Chats-list">
+        <div className="Chats-list-title">List of chats</div>
+        <List>
+          {chatsList.map((chat) => <ListItem key={chat.id}>{chat.name}</ListItem>)}
+        </List>
+      </div>
+      <div className="Chat">
+        <div className="Messages">
+          {messages.map((message) => <div key={message.id}>{message.author}: {message.text}</div>)}
+        </div>
         <Form onMessageSend={onMessageSend}/>
-      </header>
+      </div>            
     </div>
   );
 }

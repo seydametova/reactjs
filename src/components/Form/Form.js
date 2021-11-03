@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField'
+import React, { useRef, useState } from 'react';
 
 export const Form = ({onMessageSend}) => {
     const [value, setValue] = useState('');
+    const inputRef = useRef();
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -10,17 +13,33 @@ export const Form = ({onMessageSend}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (e.target.elements["text"].value) {
-            onMessageSend(e.target.elements["text"].value);
+        if (value) {
+            onMessageSend(value);
         };
+
+        inputRef.current?.focus();
+
 
         setValue('');
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="text" value={value} onChange={handleChange}/>
-            <input type="submit" />
+        <form onSubmit={handleSubmit} className="Message-form">
+            <TextField
+                id="standard-basic"
+                label="Message"
+                variant="standard" 
+                value={value}
+                color="primary"
+                onChange={handleChange}
+                inputRef={inputRef}
+                autoFocus
+            />
+            <Button
+                type="submit"
+                variant="outlined"
+                color="primary"
+            >Send</Button>
         </form>
     )
 }
