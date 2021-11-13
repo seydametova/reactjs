@@ -1,0 +1,24 @@
+.Chats {
+  display: flex;
+  height: 100%;
+
+  font-size: calc(10px + 2vmin);
+
+  .Chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+
+    .Messages {
+      flex-grow: 1;
+      overflow: auto;
+      padding: 24px 24px 0;
+    }
+    .Message-form {
+      flex-shrink: 0;
+      padding: 24px;
+    }
+  }
+}
