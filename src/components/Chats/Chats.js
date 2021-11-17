@@ -3,7 +3,7 @@ import { Form } from '../Form/Form';
 import { v4 as uuidv4 } from 'uuid';
 import './Chats.scss';
 import { ChatList } from '../ChatList/ChatList';
-import { Navigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 
 function Chats() {
   const {chatId} = useParams();

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import List from '@mui/material/List';
-// import { v4 as uuidv4 } from 'uuid';
 import ListItem from '@mui/material/ListItem';
 import { NavLink } from "react-router-dom";
 import { TextField, Button, IconButton } from '@mui/material';
@@ -50,7 +49,7 @@ export const ChatList = () => {
                     </ListItem>
                 ))}
             </List>
-            <form onSubmit={addChat}>
+            <form onSubmit={addChat} className="Form-add-chat">
                 <TextField value={chatName} onChange={handleChange} className="Text-fields"></TextField>
                 <Button
                 type="submit"
