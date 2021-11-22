@@ -24,7 +24,7 @@ export const App = () => (
                         <Route index element={<ChatList />}></Route>
                         <Route path=":chatId" element={<Chats />}></Route>
                     </Route>
-                    <Route path="*" element={<h3>404</h3>}></Route>
+                    <Route path="*" element={<h3 className="Error">404</h3>}></Route>
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>
