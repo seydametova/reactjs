@@ -6,15 +6,14 @@ import { TextField, Button, IconButton } from '@mui/material';
 import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuidv4 } from 'uuid';
 import "./ChatList.scss";
+import { useDispatch, useSelector } from 'react-redux';
+import { addChat, deleteChat } from '../../store/chats/actions';
+import { selectChats } from '../../store/chats/selectors';
 
 export const ChatList = () => {
-
-    const [chatsList, setChatList] = useState([
-        { name: 'Chat 1', id: uuidv4() },
-        { name: 'Chat 2', id: uuidv4() },
-        { name: 'Chat 3', id: uuidv4() },
-        { name: 'Chat 4', id: uuidv4() }
-    ]);
+    const chatsList = useSelector(selectChats);
+    
+    const dispatch = useDispatch();
 
     const [chatName, setChatName] = useState('');
 
@@ -22,18 +21,18 @@ export const ChatList = () => {
         setChatName(event.target.value);
     }
 
-    const addChat = (e) => {
+    const addChatHandler = (e) => {
         e.preventDefault();
 
         if (chatName) {
-            setChatList(prevChatList => [...prevChatList, {name: chatName, id: uuidv4()}]);
+            dispatch(addChat({name: chatName, id: uuidv4()}));
         }
 
         setChatName('');
     }
 
     const removeChat = (removeChatId) => {
-        setChatList(prevChatList => prevChatList.filter(chat => chat.id !== removeChatId) );
+        dispatch(deleteChat(removeChatId));
     }
 
     return (
@@ -49,7 +48,7 @@ export const ChatList = () => {
                     </ListItem>
                 ))}
             </List>
-            <form onSubmit={addChat} className="Form-add-chat">
+            <form onSubmit={addChatHandler} className="Form-add-chat">
                 <TextField value={chatName} onChange={handleChange} className="Text-fields"></TextField>
                 <Button
                 type="submit"
