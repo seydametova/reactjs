@@ -11,11 +11,6 @@
     width: 50%;
     box-sizing: border-box;
 
-    .Messages {
-      flex-grow: 1;
-      overflow: auto;
-      padding: 24px 24px 0;
-    }
     .Message-form {
       flex-shrink: 0;
       padding: 24px;

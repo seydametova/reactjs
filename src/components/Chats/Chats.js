@@ -3,9 +3,10 @@ import { Form } from '../Form/Form';
 import { v4 as uuidv4 } from 'uuid';
 import './Chats.scss';
 import { ChatList } from '../ChatList/ChatList';
-import { useParams } from 'react-router'
+import { Messages } from '../Messages/Messages';
+import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage } from '../../store/messages/actions';
+import { addMessageWithReply } from '../../store/messages/actions';
 import  { Navigate } from 'react-router-dom';
 import { selectMessages } from '../../store/messages/selectors';
 
@@ -22,19 +23,8 @@ function Chats() {
 
 
   const onMessageSend = (text) => {
-    dispatch(addMessage({chatId, newMessage: {id: uuidv4(),text, author: 'author 1'}}))
+    dispatch(addMessageWithReply(chatId, {id: uuidv4(),text, author: 'author 1'}))
   };
-
-  useEffect(() => {
-    parentRef.current?.scrollIntoView({ behavior: "auto" });
-
-    const timeout = setTimeout( () => {
-      if (messages[chatId]?.length > 0 && messages[chatId]?.[messages[chatId]?.length - 1].author !== "robot") {
-        dispatch(addMessage({chatId, newMessage: {id: uuidv4(),text :"Robot text", author: 'robot'}}))
-      }    
-    }, 1500);
-    return () => clearTimeout(timeout);
-  }, [messages]);
 
   if (!hasChat) {
     return (<Navigate to="/404"></Navigate>)
@@ -44,9 +34,7 @@ function Chats() {
     <div className="Chats" ref={parentRef}>
       <ChatList />
       <div className="Chat">
-        <div className="Messages">
-          {messages?.[chatId]?.map((message) => <div key={message.id}>{message.author}: {message.text}</div>)}
-        </div>
+        <Messages messages={messages?.[chatId]}/>
         <Form onMessageSend={onMessageSend}/>
       </div>            
     </div>
