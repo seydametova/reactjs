@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import { Breadcrumbs } from '@mui/material';
-import "./Home.scss"
+import "./Home.scss";
 
 export const Home = () => {
     return (
@@ -22,14 +21,5 @@ export const Home = () => {
                 </NavLink>
             </Breadcrumbs>
         </div>
-        
-        // <ul>
-        //     <li>
-        //         <Link to="/profile" >Profile</Link>
-        //     </li>
-        //     <li>
-        //         <Link to="/chats" >Chats</Link>
-        //     </li>
-        // </ul>
     ) 
 }

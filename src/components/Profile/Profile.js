@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { store } from "../../store";
 import { toggleCheckbox } from "../../store/profile/actions";
 import { selectProfile } from "../../store/profile/selectors";
 import "./Profile.scss";
