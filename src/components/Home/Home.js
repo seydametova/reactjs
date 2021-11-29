@@ -14,6 +14,12 @@ export const Home = () => {
                     Profile
                 </NavLink>
                 <NavLink style={({isActive}) => ({ textDecoration: 'inherit', color: isActive ? "#4DB6AC" : "#009688" })}
+                    to="/articles"
+                    underline="hover"
+                >
+                    Articles
+                </NavLink>
+                <NavLink style={({isActive}) => ({ textDecoration: 'inherit', color: isActive ? "#4DB6AC" : "#009688" })}
                     to="/chats"
                     underline="hover"
                 >

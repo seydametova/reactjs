@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { store } from "../../store";
 import theme from "../../theme";
+import { Articles } from "../Articles/Articles";
 import { ChatList } from "../ChatList/ChatList";
 import Chats from "../Chats/Chats";
 import { Home } from "../Home/Home";
@@ -18,6 +19,7 @@ export const Router = () => (
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="profile" element={<Profile />}></Route>
+                    <Route path="articles" element={<Articles />}></Route>
                     <Route path="chats">
                         <Route index element={<ChatList />}></Route>
                         <Route path=":chatId" element={<Chats />}></Route>
