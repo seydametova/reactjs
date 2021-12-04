@@ -20,7 +20,6 @@ export const Form = ({onMessageSend}) => {
 
         inputRef.current?.focus();
 
-
         setValue('');
     }
 

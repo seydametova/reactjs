@@ -1,9 +1,12 @@
 .Chats-list {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   width: 50%;
-  padding: 24px;
   box-sizing: border-box;
 
-  font-size: calc(10px + 2vmin);
+  .Chats-list-title {
+  }
 
   .Form-add-chat {
     display: inline-grid;

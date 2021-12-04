@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { apiUrl } from '../../utils/constants';
+import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { CircularProgress } from '@mui/material';
 
