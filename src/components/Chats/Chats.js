@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Form } from '../Form/Form';
 import { v4 as uuidv4 } from 'uuid';
 import './Chats.scss';
@@ -8,35 +8,33 @@ import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessageWithReply } from '../../store/messages/actions';
 import  { Navigate } from 'react-router-dom';
-import { selectMessages } from '../../store/messages/selectors';
+import { selectName } from "../../store/profile/selectors";
 
-function Chats() {
+function Chats({msgs }) {
   const {chatId} = useParams();
-
-  const messages = useSelector(selectMessages);
-
-  const hasChat = useSelector(state => state.chats.some(a => a.id === chatId));
   
   const dispatch = useDispatch();
 
   const parentRef = useRef();
 
+  const userName = useSelector(selectName);
+
 
   const onMessageSend = (text) => {
-    dispatch(addMessageWithReply(chatId, {id: uuidv4(),text, author: 'author 1'}))
+    dispatch(addMessageWithReply(chatId, {id: uuidv4(),text, author: userName}))
   };
 
-  if (!hasChat) {
-    return (<Navigate to="/404"></Navigate>)
+  if (!msgs[chatId]) {
+    return (<Navigate replace to="/chats"></Navigate>)
   }
 
   return (    
     <div className="Chats" ref={parentRef}>
       <ChatList />
       <div className="Chat">
-        <Messages messages={messages?.[chatId]}/>
+        <Messages messages={msgs?.[chatId]}/>
         <Form onMessageSend={onMessageSend}/>
-      </div>            
+      </div>          
     </div>
   );
 }

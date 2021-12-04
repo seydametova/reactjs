@@ -1,12 +1,6 @@
-// import { v4 as uuidv4 } from 'uuid';
-import { ADD_CHAT, DELETE_CHAT } from "./actions";
+import { ADD_CHAT, DELETE_CHAT, SET_CHATS } from "./actions";
 
-const initialChats = [
-    // { name: 'Chat 1', id: uuidv4() },
-    // { name: 'Chat 2', id: uuidv4() },
-    // { name: 'Chat 3', id: uuidv4() },
-    // { name: 'Chat 4', id: uuidv4() }
-];
+const initialChats = [];
 
 export const chatsReducer = (state = initialChats, { type, payload }) => {
     switch (type) {
@@ -17,6 +11,8 @@ export const chatsReducer = (state = initialChats, { type, payload }) => {
             ];
         case DELETE_CHAT:
             return state.filter(({ id }) => id !== payload);
+        case SET_CHATS: 
+            return payload;
         default:
             return state;
     }

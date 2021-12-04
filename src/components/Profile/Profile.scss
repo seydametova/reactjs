@@ -1,8 +1,14 @@
-.Profile-header,
-.Profile-checkbox {
+.Profile-container {
   margin: 20px;
-  cursor: pointer;
-}
-.Profile-checkbox-name {
-  cursor: pointer;
+
+  .Profile-checkbox-name {
+    margin-bottom: 20px;
+
+    .Profile-name {
+      cursor: pointer;
+    }
+    .Profile-checkbox {
+      cursor: pointer;
+    }
+  }
 }

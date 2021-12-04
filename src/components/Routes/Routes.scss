@@ -10,3 +10,8 @@ body {
 .Error {
   margin: 20px;
 }
+
+.Container-content {
+  height: calc(100% - 64px);
+  overflow: auto;
+}

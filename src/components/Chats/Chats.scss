@@ -2,10 +2,10 @@
   display: flex;
   height: 100%;
 
-  font-size: calc(10px + 2vmin);
-
   .Chat {
     display: flex;
+    justify-content: space-between;
+
     flex-direction: column;
     height: 100%;
     width: 50%;
