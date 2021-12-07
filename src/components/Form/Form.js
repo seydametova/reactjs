@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField'
 import React, { useRef, useState } from 'react';
 import './Form.scss'
 
-export const Form = ({onMessageSend}) => {
+export const Form = ({onMessageSend, buttonText}) => {
     const [value, setValue] = useState('');
     const inputRef = useRef();
 
@@ -40,7 +40,7 @@ export const Form = ({onMessageSend}) => {
                 type="submit"
                 variant="outlined"
                 color="primary"
-            >Send</Button>
+            >{buttonText}</Button>
         </form>
     )
 }

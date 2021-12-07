@@ -10,7 +10,7 @@ export const addMessage = (chatId, newMessage) => ({
 });
 
 let timeout; 
-export const addMessageWithReply = (chatId, newMessage) => () => {
+export const addMessageWithReplyFb = (chatId, newMessage) => () => {
     push(getChatMsgsListRefById(chatId), newMessage);
 
     if (newMessage.author !== "robot") {
@@ -22,4 +22,4 @@ export const addMessageWithReply = (chatId, newMessage) => () => {
             push(getChatMsgsListRefById(chatId), {id: uuidv4(),text :"Robot text", author: 'robot'});
         }, 1500);
     }
-}
+};

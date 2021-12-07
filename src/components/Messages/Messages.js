@@ -4,7 +4,11 @@ import "./Messages.scss";
 export const Messages = ({messages}) => {
     return (
         <div className="Messages">
-          {messages?.map((message) => <div key={message.id}>{message.author}: {message.text}</div>)}
+          {messages?.map((message) => 
+          <div key={message.id}>
+            <span>{message.author}:</span>
+            <span>{message.text}</span>
+          </div>)}
         </div>
     )
 }

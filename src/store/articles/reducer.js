@@ -5,7 +5,7 @@ import {
     REQUEST_ARTICLES_SUCCESS,
 } from "./actions"
 
-const initialState = {
+export const initialState = {
     articlesList: [],
     request: {
         status: REQUEST_STATUS.IDLE,

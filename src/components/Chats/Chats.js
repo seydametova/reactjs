@@ -6,7 +6,7 @@ import { ChatList } from '../ChatList/ChatList';
 import { Messages } from '../Messages/Messages';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessageWithReply } from '../../store/messages/actions';
+import { addMessageWithReplyFb } from '../../store/messages/actions';
 import  { Navigate } from 'react-router-dom';
 import { selectName } from "../../store/profile/selectors";
 
@@ -21,7 +21,7 @@ function Chats({msgs }) {
 
 
   const onMessageSend = (text) => {
-    dispatch(addMessageWithReply(chatId, {id: uuidv4(),text, author: userName}))
+    dispatch(addMessageWithReplyFb(chatId, {id: uuidv4(),text, author: userName}))
   };
 
   if (!msgs[chatId]) {
@@ -33,7 +33,7 @@ function Chats({msgs }) {
       <ChatList />
       <div className="Chat">
         <Messages messages={msgs?.[chatId]}/>
-        <Form onMessageSend={onMessageSend}/>
+        <Form buttonText={'Send'} onMessageSend={onMessageSend}/>
       </div>          
     </div>
   );
